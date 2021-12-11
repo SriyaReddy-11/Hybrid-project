@@ -27,6 +27,31 @@ class _resetPasswordState extends State<resetPassword> {
                 ),
               ),
             ),
+         body: Container(
+              height: double.maxFinite,
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('images/bg.jpg'),
+                    colorFilter: new ColorFilter.mode(
+                        Colors.black.withOpacity(0.4), BlendMode.dstATop),
+                    fit: BoxFit.cover),
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25, bottom: 48,left: 35),
+                        child: Text(
+                          ('Fill the details to reset your password'),
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      ),
              )
     );
   }
