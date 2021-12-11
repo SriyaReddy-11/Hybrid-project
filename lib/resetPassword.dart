@@ -52,6 +52,20 @@ class _resetPasswordState extends State<resetPassword> {
                           ),
                         ),
                       ),
+                     Container(
+                        width: 260,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 5.0),
+                          child: TextField(
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderSide:
+                                        new BorderSide(color: Colors.red)),
+                                labelText: 'Enter E-mail',
+                                hintText: 'Enter Your E-mail'),
+                          ),
+                        ),
+                      ),
              )
     );
   }
