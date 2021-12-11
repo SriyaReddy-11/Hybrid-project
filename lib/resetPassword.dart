@@ -66,6 +66,49 @@ class _resetPasswordState extends State<resetPassword> {
                           ),
                         ),
                       ),
+                     Container(
+                        width: 260,
+                        child: TextField(
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                  borderSide: new BorderSide(color: Colors.red)),
+                              labelText: 'New Password',
+                              hintText: 'Enter Your new password'),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+                        child: Container(
+                          width: 260,
+                          child: TextField(
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderSide: new BorderSide(color: Colors.red)),
+                                labelText: 'Re-enter Password',
+                                hintText: 'Confirm password'),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0,right: 8.0,top: 8.0),
+                        child: RaisedButton(
+                          color: Colors.blue.shade300,
+                          child: Text('Reset Password',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                          onPressed: (){
+                            //navigateToNextScreen(context);
+                            Navigator.pushNamed(context, '/login');
+                          },
+                        ),
+                      ),
+                    ]
+                ),
+              ),
+            )
              )
     );
   }
