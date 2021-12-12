@@ -3,14 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class home extends StatefulWidget {
+  const home({Key? key}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  _homeState createState() => _homeState();
 }
 
-class _HomeState extends State<Home> {
+class _homeState extends State<home> {
   final List<String> slideimage = [
     'images/news1.JPG',
     'images/news2.JPG',
