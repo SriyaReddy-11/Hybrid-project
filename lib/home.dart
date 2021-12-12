@@ -1,15 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class home extends StatefulWidget {
-  const home({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
 
   @override
-  _homeState createState() => _homeState();
+  _HomeState createState() => _HomeState();
 }
 
-class _homeState extends State<home> {
+class _HomeState extends State<Home> {
   final List<String> slideimage = [
     'images/news1.JPG',
     'images/news2.JPG',
@@ -25,7 +26,7 @@ class _homeState extends State<home> {
                 width: double.maxFinite,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('images/bg.jpg'),
+                      image: AssetImage('images/wallpaper.jpg'),
                       colorFilter: new ColorFilter.mode(
                           Colors.black.withOpacity(0.7), BlendMode.dstATop),
                       fit: BoxFit.cover),
@@ -34,49 +35,15 @@ class _homeState extends State<home> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 60.0),
-                        child: Text('RentoGo',
-                          style: TextStyle(
-                              fontSize: 70,
-                              color: Colors.deepOrange.shade500,
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.bold
-                          ),),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          child: Icon(
-                            Icons.home,
-                            color: Colors.deepOrangeAccent,
-                            size: 300,
-                          ),
+                        padding: const EdgeInsets.only(top: 115.0),
+                        child: Image.asset('images/bg.jpg',
+                          width: 250,
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          RaisedButton(
-                            color: Colors.red.shade100,
-                            onPressed: () {
-                              setState(() {
-                                Navigator.pushNamed(context, '/login');
-                              }
-                              );
-                            },
-                            child: Text('Log In'),
-                          ),
-                          RaisedButton(
-                            color: Colors.red.shade100,
-                            onPressed: () {
-                              setState(() {});
-                            },
-                            child: Text('Create Account'),
-                          )
-                        ],
-                      ),
+                      Image.asset('images/togo.png',
+                        width: 150,),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: Container(
                           child: ListView(
                             shrinkWrap: true,
@@ -90,7 +57,7 @@ class _homeState extends State<home> {
                                   items: slideimage
                                       .map((e) => ClipRRect(
                                     borderRadius:
-                                    BorderRadius.circular(6),
+                                    BorderRadius.circular(8),
                                     child: Stack(
                                       fit: StackFit.expand,
                                       children: [
@@ -108,6 +75,39 @@ class _homeState extends State<home> {
                             ],
                           ),
                         ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 220.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
+                            primary: Colors.redAccent,
+                            shape: StadiumBorder(),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              Navigator.pushNamed(context, '/login');
+                            }
+                            );
+                          },
+                          child: Text('Get Started...',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontStyle: FontStyle.italic
+                            ),),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          setState(() {});
+                        },
+                        child: Text('Don\'t have an account?? Create now..',
+                          style: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blueGrey.shade300
+                          ),),
                       ),
                     ],
                   ),
