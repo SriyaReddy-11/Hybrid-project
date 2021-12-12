@@ -77,7 +77,63 @@ body: Container(
                         labelText: 'E-Mail',
                         hintText: 'Enter Your E-mail'),
                   ),
-                ),        
+                ),  
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Container(
+                    width: 260,
+                    child: TextField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderSide: new BorderSide(color: Colors.red)
+                        ),
+                        labelText: 'Password',
+                        hintText: 'Enter Password',
+                      ),
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Container(
+                    width: 260,
+                    child: TextField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderSide: new BorderSide(color: Colors.red),
+                        ),
+                        labelText: 'Re-enter Password',
+                        hintText: 'Confirm Password',
+                      ),
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RaisedButton(onPressed: (){},
+                    color: Colors.blue,
+                    child: Text('Create Account',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+          ),
+            ),
+        ),              
  ),
     );
   }
