@@ -27,3 +27,56 @@ class _hotelDetailsState extends State<hotelDetails> {
           ),
           onPressed: () {},
         ),
+           title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'RentoGo',
+              style: TextStyle(
+                fontSize: 25,
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          RaisedButton(
+            color: Colors.redAccent,
+            child: CircleAvatar(
+              backgroundColor: Colors.black54,
+              radius: 20,
+              child: Icon(
+                Icons.person,
+                color: Color(0xffCCCCCC),
+              ),
+            ),
+            onPressed: () {},
+          )
+        ],
+      ),
+      body: Container(
+        height: double.maxFinite,
+        width: double.maxFinite,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('images/bg.jpg'),
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.4), BlendMode.dstATop),
+              fit: BoxFit.cover),
+        ),
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    width: 370,
+                    height: 240,
+                    child: Image.asset(
+                      'images/hotel1.JPG',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
