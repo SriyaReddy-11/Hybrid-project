@@ -78,3 +78,63 @@ class _LoginState extends State<Login> {
                         color: Colors.black),
                   ),
                 ),
+                 Container(
+                  width: 260,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderSide: new BorderSide(color: Colors.red)
+                        ),
+                        labelText: 'Enter Name',
+                        hintText: 'Enter Your User Name'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Container(
+                    width: 260,
+                    child: TextField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderSide: new BorderSide(color: Colors.red)
+                        ),
+                        labelText: 'Password',
+                        hintText: 'Enter Password',
+                      ),
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RaisedButton(onPressed: (){},
+                    color: Colors.blue,
+                  child: Text('Sign In',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                  ),
+                  ),
+                ),
+                TextButton(onPressed: (){},
+                    child: Text('Forgot Password?',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15
+                    ),
+                    ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
