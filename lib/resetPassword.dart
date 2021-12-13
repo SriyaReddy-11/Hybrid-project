@@ -32,7 +32,7 @@ class _resetPasswordState extends State<resetPassword> {
               width: double.maxFinite,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('images/bg.jpg'),
+                    image: AssetImage('images/wallpaper.jpg'),
                     colorFilter: new ColorFilter.mode(
                         Colors.black.withOpacity(0.4), BlendMode.dstATop),
                     fit: BoxFit.cover),
