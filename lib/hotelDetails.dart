@@ -80,3 +80,107 @@ class _hotelDetailsState extends State<hotelDetails> {
                     ),
                   ),
                 ),
+ Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Hotel Plasa',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                        fontSize: 20),
+                  ),
+                ),
+                ListTile(
+                  leading: MyBullet(),
+                  title: Text(
+                    'Parking',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                ListTile(
+                  leading: MyBullet(),
+                  title: Text(
+                    'Wifi',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                ListTile(
+                  leading: MyBullet(),
+                  title: Text(
+                    'Breakfast and lunch included',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                ListTile(
+                  leading: MyBullet(),
+                  title: Text(
+                    '2 beds',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                ListTile(
+                  leading: MyBullet(),
+                  title: Text(
+                    'Pets allowed',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 280),
+                  child: RaisedButton(
+                      color: Colors.blue.shade300,
+                      child: Text(
+                        buttonText,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      onPressed: () {
+                        isChanged = !isChanged;
+                        setState(
+                          () {
+                            isChanged == true
+                                ? buttonText = "Book"
+                                : buttonText = "Cancel";
+                          },
+                        );
+                      }),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ));
+  }
+}
+
+class MyBullet extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 12.0,
+      width: 12.0,
+      decoration: BoxDecoration(
+        color: Colors.black,
+        shape: BoxShape.circle,
+      ),
+    );
+  }
+}
