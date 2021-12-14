@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelreservation/Login.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class resetPassword extends StatefulWidget {
- const resetPassword({Key? key}) : super(key: key);
+  const resetPassword({Key? key}) : super(key: key);
 
   @override
   _resetPasswordState createState() => _resetPasswordState();
@@ -16,7 +17,8 @@ class _resetPasswordState extends State<resetPassword> {
         home: Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.redAccent,
-              title: Center(
+              title: Padding(
+                padding: const EdgeInsets.only(left: 75.0),
                 child: Text(
                   'RentoGo',
                   style: TextStyle(
@@ -26,8 +28,20 @@ class _resetPasswordState extends State<resetPassword> {
                   ),
                 ),
               ),
+              leading: FlatButton(
+                color: Colors.redAccent,
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Color(0xffCCCCCC),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/login');
+                },
+              ),
+              actions: [
+              ],
             ),
-         body: Container(
+            body: Container(
               height: double.maxFinite,
               width: double.maxFinite,
               decoration: BoxDecoration(
@@ -52,7 +66,7 @@ class _resetPasswordState extends State<resetPassword> {
                           ),
                         ),
                       ),
-                     Container(
+                      Container(
                         width: 260,
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 5.0),
@@ -60,13 +74,13 @@ class _resetPasswordState extends State<resetPassword> {
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                     borderSide:
-                                        new BorderSide(color: Colors.red)),
+                                    new BorderSide(color: Colors.red)),
                                 labelText: 'Enter E-mail',
                                 hintText: 'Enter Your E-mail'),
                           ),
                         ),
                       ),
-                     Container(
+                      Container(
                         width: 260,
                         child: TextField(
                           decoration: InputDecoration(
@@ -109,8 +123,10 @@ class _resetPasswordState extends State<resetPassword> {
                 ),
               ),
             )
-             )
+        )
     );
   }
-  
+// void navigateToNextScreen(BuildContext context) {
+//   Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
+// }
 }
