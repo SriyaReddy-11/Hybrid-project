@@ -19,7 +19,8 @@ class _CreateAccountState extends State<CreateAccount> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.redAccent,
-          title: Center(
+          title: Padding(
+            padding: const EdgeInsets.only(left: 75.0),
             child: Text(
               'RentoGo',
               style: TextStyle(
@@ -29,29 +30,41 @@ class _CreateAccountState extends State<CreateAccount> {
               ),
             ),
           ),
-           ),
-body: Container(
-            height: double.maxFinite,
-            width: double.maxFinite,
-            decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('images/bg.jpg'),
-            colorFilter: new ColorFilter.mode(
-            Colors.black.withOpacity(0.4), BlendMode.dstATop),
-            fit: BoxFit.cover),
+          leading: FlatButton(
+            color: Colors.redAccent,
+            child: Icon(
+              Icons.arrow_back,
+              color: Color(0xffCCCCCC),
             ),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+            onPressed: () {
+              Navigator.pushNamed(context, '/home');
+            },
+          ),
+          actions: [
+          ],
+        ),
+        body: Container(
+          height: double.maxFinite,
+          width: double.maxFinite,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('images/wallpaper.jpg'),
+                colorFilter: new ColorFilter.mode(
+                    Colors.black.withOpacity(0.4), BlendMode.dstATop),
+                fit: BoxFit.cover),
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 25, bottom: 50),
                   child: Text(('Create Account'),
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                  ),),
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic,
+                    ),),
                 ),
                 Container(
                   width: 260,
@@ -77,7 +90,7 @@ body: Container(
                         labelText: 'E-Mail',
                         hintText: 'Enter Your E-mail'),
                   ),
-                ),  
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 5),
                   child: Container(
@@ -106,7 +119,7 @@ body: Container(
                       obscureText: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
-                            borderSide: new BorderSide(color: Colors.red),
+                          borderSide: new BorderSide(color: Colors.red),
                         ),
                         labelText: 'Re-enter Password',
                         hintText: 'Confirm Password',
@@ -131,10 +144,10 @@ body: Container(
                   ),
                 ),
               ],
-          ),
             ),
-        ),              
- ),
+          ),
+        ),
+      ),
     );
   }
 }

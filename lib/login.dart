@@ -18,7 +18,8 @@ class _LoginState extends State<Login> {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.redAccent,
-          title: Center(
+          title: Padding(
+            padding: const EdgeInsets.only(left: 75.0),
             child: Text(
               'RentoGo',
               style: TextStyle(
@@ -28,47 +29,66 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
+          leading: FlatButton(
+            color: Colors.redAccent,
+            child: Icon(
+              Icons.arrow_back,
+              color: Color(0xffCCCCCC),
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, '/home');
+            },
+          ),
+          actions: [
+          ],
         ),
         body: Container(
           height: double.maxFinite,
           width: double.maxFinite,
           decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('images/bg.jpg'),
+                image: AssetImage('images/wallpaper.jpg'),
                 colorFilter: new ColorFilter.mode(
-                    Colors.black.withOpacity(0.4), BlendMode.dstATop),
+                    Colors.black.withOpacity(0.6), BlendMode.dstATop),
                 fit: BoxFit.cover),
           ),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 90),
-                  child: RaisedButton(
-                    color: Colors.white70,
-                    onPressed: () {},
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 50,
-                          width: 50,
-                          child: Image.asset('images/googlelogo.jpg'),),
+                  padding: const EdgeInsets.only(top: 20),
+                  child: FractionallySizedBox(
+                    widthFactor: 0.7,
+                    child: RaisedButton(
+                      color: Colors.redAccent.withOpacity(0.1),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/login');
+                      },
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 5.0),
+                            child: SizedBox(
+                              height: 50,
+                              width: 50,
+                              child: Image.asset('images/facebook-logo.png'),),
+                          ),
                           SizedBox(
                             child: Text(
-                            'Sign in with Google',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                fontStyle: FontStyle.italic),
-                        ),
+                              'Sign in with Google',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FontStyle.italic),
+                            ),
                           )
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 50, bottom: 40),
+                  padding: const EdgeInsets.only(top: 40, bottom: 30),
                   child: Text(
                     'Or use your RentoGo credentials',
                     style: TextStyle(
@@ -78,7 +98,7 @@ class _LoginState extends State<Login> {
                         color: Colors.black),
                   ),
                 ),
-                 Container(
+                Container(
                   width: 260,
                   child: TextField(
                     decoration: InputDecoration(
@@ -113,22 +133,29 @@ class _LoginState extends State<Login> {
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton(onPressed: (){},
                     color: Colors.blue,
-                  child: Text('Sign In',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                  ),
+                    child: Text('Sign In',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
                   ),
                 ),
-                TextButton(onPressed: (){},
-                    child: Text('Forgot Password?',
+                TextButton(onPressed: (){
+                  Navigator.pushNamed(context, '/reset');
+                },
+                  child: Text('Forgot Password? Click here',
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15
                     ),
-                    ),
+                  ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 18.0),
+                  child: Image.asset('images/log.gif'),
+                )
               ],
             ),
           ),
@@ -137,4 +164,3 @@ class _LoginState extends State<Login> {
     );
   }
 }
-
