@@ -16,10 +16,10 @@ class _hotelScreenState extends State<hotelScreen> {
       home: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.redAccent,
-            leading: RaisedButton(
+            leading: FlatButton(
               color: Colors.redAccent,
               child: Icon(
-                Icons.menu,
+                Icons.arrow_back,
                 color: Color(0xffCCCCCC),
               ),
               onPressed: () {},
@@ -38,7 +38,7 @@ class _hotelScreenState extends State<hotelScreen> {
               ],
             ),
             actions: [
-              RaisedButton(
+              FlatButton(
                 color: Colors.redAccent,
                 child: CircleAvatar(
                   backgroundColor: Colors.black54,
@@ -52,7 +52,8 @@ class _hotelScreenState extends State<hotelScreen> {
               )
             ],
           ),
-          body: Container(
+          body:
+          Container(
             height: double.maxFinite,
             width: double.maxFinite,
             decoration: BoxDecoration(
@@ -66,6 +67,53 @@ class _hotelScreenState extends State<hotelScreen> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        DropdownButton<String>(
+                          dropdownColor: Colors.blueAccent.shade100,
+                          iconSize: 0,
+                          items: <String>['Price low to high', 'Price high to low', 'latest'].map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                          onChanged: (_) {},
+
+                          hint: FlatButton(
+                            minWidth: 15,
+                            color: Colors.redAccent.shade100,
+                            child: Icon(
+                              Icons.sort,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {},
+                          ),
+                        ),
+                        DropdownButton<String>(
+                          dropdownColor: Colors.blueAccent.shade100,
+                          iconSize: 2,
+                          items: <String>['Rating', 'Price', 'Avaliability'].map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                          onChanged: (_) {},
+
+                          hint: FlatButton(
+                            minWidth: 15,
+                            color: Colors.redAccent.shade100,
+                            child: Icon(
+                              Icons.filter,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {},
+                          ),
+                        ),
+                      ],
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
@@ -78,15 +126,15 @@ class _hotelScreenState extends State<hotelScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Hotel Plasa: ',
-                            style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                fontStyle: FontStyle.italic
-                            ),
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic
+                          ),
                           ),
                           Text('\$89',
                             style: TextStyle(
-                                color: Colors.deepOrangeAccent,
+                              color: Colors.black,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FontStyle.italic
@@ -103,7 +151,7 @@ class _hotelScreenState extends State<hotelScreen> {
                         children: [
                           Text('Avaliable',
                             style: TextStyle(
-                                color: Colors.green.shade900,
+                              color: Colors.green.shade900,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FontStyle.italic
@@ -113,11 +161,11 @@ class _hotelScreenState extends State<hotelScreen> {
                             padding: const EdgeInsets.only(right: 24),
                             child: RaisedButton(onPressed: (){},
                               color: Colors.blueAccent,
-                              child: Text('Details',
-                                style: TextStyle(
-                                    fontSize: 18
-                                ),
+                            child: Text('Details',
+                              style: TextStyle(
+                                fontSize: 18
                               ),
+                            ),
                             ),
                           )
                         ],
@@ -143,7 +191,7 @@ class _hotelScreenState extends State<hotelScreen> {
                           ),
                           Text('\$75',
                             style: TextStyle(
-                                color: Colors.deepOrangeAccent,
+                                color: Colors.black,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FontStyle.italic
@@ -200,7 +248,7 @@ class _hotelScreenState extends State<hotelScreen> {
                           ),
                           Text('\$57',
                             style: TextStyle(
-                                color: Colors.deepOrangeAccent,
+                                color: Colors.black,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FontStyle.italic
