@@ -99,7 +99,9 @@ class _homeState extends State<home> {
                       ),
                       TextButton(
                         onPressed: () {
-                          setState(() {});
+                          setState(() {
+                            Navigator.pushNamed(context, '/account');
+                          });
                         },
                         child: Text('Don\'t have an account?? Create now..',
                           style: TextStyle(
