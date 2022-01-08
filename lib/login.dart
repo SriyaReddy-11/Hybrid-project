@@ -1,8 +1,13 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import 'home.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -12,8 +17,107 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final _auth = FirebaseAuth.instance;
+
+  final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController emailController = new TextEditingController();
+  final TextEditingController passwordController = new TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
+
+    final emailField = TextFormField(
+      decoration: InputDecoration(
+          border: OutlineInputBorder(
+              borderSide: new BorderSide(color: Colors.red)
+          ),
+          labelText: 'Enter Name',
+          hintText: 'Enter Your User Name'
+      ),
+      autofocus: false,
+      controller: emailController,
+      keyboardType: TextInputType.emailAddress,
+      validator: (value) {
+        if(value!.isEmpty)
+        {
+          return "Please enter your Email Address";
+        }
+        if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value))
+        {
+          return("Please enter a valid Email Address");
+        }
+      },
+      onSaved: (value) {
+        emailController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+    );
+
+    final passwordField = TextFormField(
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+            borderSide: new BorderSide(color: Colors.red)
+        ),
+        labelText: 'Password',
+        hintText: 'Enter Password',
+      ),
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 16,
+      ),
+      autofocus: false,
+      obscureText: true,
+      controller: passwordController,
+      validator: (value) {
+        RegExp regexp = new RegExp(r'^.{6,}$');
+        if(value!.isEmpty)
+        {
+          return "Please enter your Password";
+        }
+        if(!regexp.hasMatch(value))
+        {
+          return("Please enter a valid Password");
+        }
+      },
+      onSaved: (value) {
+        passwordController.text = value!;
+      },
+      textInputAction: TextInputAction.done,
+    );
+
+    final loginButton = Material(
+      child: RaisedButton(onPressed: (){
+        Navigator.pushNamed(context, '/screen');
+      },
+        color: Colors.blue,
+        child: Text('Sign In',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
+      ),
+    );
+
+    final forgotButton = Material(
+
+      child: TextButton(onPressed: (){
+        Navigator.pushNamed(context, '/reset');
+      },
+        child: Text('Forgot Password? Click here',
+          style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 15
+          ),
+        ),
+      ),
+    );
+
+
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -74,10 +178,11 @@ class _LoginState extends State<Login> {
                               child: Image.asset('images/facebook-logo.png'),),
                           ),
                           SizedBox(
+                            width: 180,
                             child: Text(
-                              'Sign in with Google',
+                              'Sign in with Facebook',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 17,
                                   fontWeight: FontWeight.bold,
                                   fontStyle: FontStyle.italic),
                             ),
@@ -100,58 +205,21 @@ class _LoginState extends State<Login> {
                 ),
                 Container(
                   width: 260,
-                  child: TextField(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderSide: new BorderSide(color: Colors.red)
-                        ),
-                        labelText: 'Enter Name',
-                        hintText: 'Enter Your User Name'),
-                  ),
+                  child: emailField,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 5),
+                  padding: const EdgeInsets.only(top: 7),
                   child: Container(
                     width: 260,
-                    child: TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderSide: new BorderSide(color: Colors.red)
-                        ),
-                        labelText: 'Password',
-                        hintText: 'Enter Password',
-                      ),
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
-                    ),
+                    child: passwordField,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: RaisedButton(onPressed: (){},
-                    color: Colors.blue,
-                    child: Text('Sign In',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
+                  padding: const EdgeInsets.all(10.0),
+                  child: loginButton,
                 ),
-                TextButton(onPressed: (){
-                  Navigator.pushNamed(context, '/reset');
-                },
-                  child: Text('Forgot Password? Click here',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15
-                    ),
-                  ),
-                ),
+
+                forgotButton,
                 Padding(
                   padding: const EdgeInsets.only(top: 18.0),
                   child: Image.asset('images/log.gif'),
@@ -163,4 +231,22 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+
+  void signIn(String email, String password)  async
+  {
+    if(_formKey.currentState!.validate())
+    {
+
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((uid) => {Fluttertoast.showToast(msg: "Login SuccessFull"),
+        Navigator.push(context, MaterialPageRoute(builder: (context) => home()),),
+      }).catchError((e)
+      {
+        Fluttertoast.showToast(msg: e!.message);
+      });
+
+    }
+  }
+
 }

@@ -1,6 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:hotelreservation/Home.dart';
 import 'package:hotelreservation/cancellation.dart';
 import 'package:hotelreservation/hotelDetails.dart';
@@ -8,13 +8,14 @@ import 'package:hotelreservation/hotelScreen.dart';
 import 'package:hotelreservation/resetPassword.dart';
 import 'CreateAccount.dart';
 import 'Login.dart';
-import 'Splash.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'bookingConfirmation.dart';
 
-//import 'Splash.dart';
 
-void main() {
-  runApp( MyApp(),
+
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp( MyApp()
   );
 }
 
@@ -30,6 +31,8 @@ class MyApp extends StatelessWidget {
         '/home' :(context) => home(),
         '/login' : (context) => Login(),
         '/reset' : (context) => resetPassword(),
+        '/cancel' : (context) => cancellation(),
+        '/confirm' : (context) => bookingConfirmation(),
         //'/splash' : (context) => Splash(),
         '/details' : (context) => hotelDetails(),
         '/screen' : (context) => hotelScreen(),

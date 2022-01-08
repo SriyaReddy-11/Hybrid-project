@@ -22,7 +22,9 @@ class _hotelScreenState extends State<hotelScreen> {
                 Icons.arrow_back,
                 color: Color(0xffCCCCCC),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/home');
+              },
             ),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -159,7 +161,9 @@ class _hotelScreenState extends State<hotelScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(right: 24),
-                            child: RaisedButton(onPressed: (){},
+                            child: RaisedButton(onPressed: (){
+                              Navigator.pushNamed(context, '/details');
+                            },
                               color: Colors.blueAccent,
                               child: Text('Details',
                                 style: TextStyle(
@@ -216,7 +220,9 @@ class _hotelScreenState extends State<hotelScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(right: 24),
-                            child: RaisedButton(onPressed: (){},
+                            child: RaisedButton(onPressed: (){
+                              Navigator.pushNamed(context, '/details');
+                            },
                               color: Colors.blueAccent,
                               child: Text('Details',
                                 style: TextStyle(
@@ -273,7 +279,9 @@ class _hotelScreenState extends State<hotelScreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(right: 24),
-                            child: RaisedButton(onPressed: (){},
+                            child: RaisedButton(onPressed: (){
+                              Navigator.pushNamed(context, '/details');
+                            },
                               color: Colors.blueAccent,
                               child: Text('Details',
                                 style: TextStyle(

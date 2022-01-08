@@ -19,7 +19,7 @@ class _hotelDetailsState extends State<hotelDetails> {
         home: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.redAccent,
-            leading: RaisedButton(
+            leading: FlatButton(
               color: Colors.redAccent,
               child: Icon(
                 Icons.share,
@@ -41,7 +41,7 @@ class _hotelDetailsState extends State<hotelDetails> {
               ],
             ),
             actions: [
-              RaisedButton(
+              FlatButton(
                 color: Colors.redAccent,
                 child: CircleAvatar(
                   backgroundColor: Colors.black54,
@@ -140,27 +140,41 @@ class _hotelDetailsState extends State<hotelDetails> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 280),
-                      child: RaisedButton(
-                          color: Colors.blue.shade300,
-                          child: Text(
-                            buttonText,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: RaisedButton(
+                              color: Colors.blue.shade300,
+                              child: Text(
+                                'Back',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              onPressed: (){
+                                Navigator.pushNamed(context, '/screen');
+                              }
                           ),
-                          onPressed: () {
-                            isChanged = !isChanged;
-                            setState(
-                                  () {
-                                isChanged == true
-                                    ? buttonText = "Book"
-                                    : buttonText = "Cancel";
-                              },
-                            );
-                          }),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: RaisedButton(
+                              color: Colors.blue.shade300,
+                              child: Text(
+                                "Book",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/confirm');
+                              }),
+                        ),
+                      ],
                     ),
                   ],
                 ),

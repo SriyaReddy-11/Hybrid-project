@@ -133,7 +133,9 @@ class _CreateAccountState extends State<CreateAccount> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: RaisedButton(onPressed: (){},
+                  child: RaisedButton(onPressed: (){
+                    Navigator.pushNamed(context, '/login');
+                  },
                     color: Colors.blue,
                     child: Text('Create Account',
                       style: TextStyle(

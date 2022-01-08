@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "767140657201",
+    "project_id": "rentogo-9c580",
+    "storage_bucket": "rentogo-9c580.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767140657201:android:a0923b41856ae9139afd10",
+        "android_client_info": {
+          "package_name": "com.example.hotelreservation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767140657201-kseh7o95adm3195gug5kbe2asfsjqame.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hotelreservation",
+            "certificate_hash": "49658306930bb7fb3e05c4be281e4d52b5d4578c"
+          }
+        },
+        {
+          "client_id": "767140657201-u5m55rklqt23p4itjfbe8q9d670dljm4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNdNzMWmkDKQS6G0k8yhARTglgsYVQzJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767140657201-u5m55rklqt23p4itjfbe8q9d670dljm4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
