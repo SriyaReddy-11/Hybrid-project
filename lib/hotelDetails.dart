@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'cancellation.dart';
+import 'home.dart';
+
 class hotelDetails extends StatefulWidget {
   const hotelDetails({Key? key}) : super(key: key);
 
@@ -22,10 +25,12 @@ class _hotelDetailsState extends State<hotelDetails> {
             leading: FlatButton(
               color: Colors.redAccent,
               child: Icon(
-                Icons.share,
+                Icons.arrow_back,
                 color: Color(0xffCCCCCC),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/screen');
+              },
             ),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -41,18 +46,27 @@ class _hotelDetailsState extends State<hotelDetails> {
               ],
             ),
             actions: [
-              FlatButton(
-                color: Colors.redAccent,
-                child: CircleAvatar(
-                  backgroundColor: Colors.black54,
-                  radius: 20,
-                  child: Icon(
-                    Icons.person,
-                    color: Color(0xffCCCCCC),
+              PopupMenuButton<int>(
+                color: Colors.indigo,
+                onSelected: (item) => onSelected(context, item),
+                itemBuilder: (context) => [
+                  PopupMenuItem<int>(
+                    value: 0,
+                    child: Text('Bookings'),
                   ),
-                ),
-                onPressed: () {},
-              )
+                  PopupMenuDivider(),
+                  PopupMenuItem<int>(
+                    value: 1,
+                    child: Row(
+                      children: [
+                        Icon(Icons.logout),
+                        const SizedBox(width: 8),
+                        Text('Sign Out'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
           body: Container(
@@ -141,24 +155,8 @@ class _hotelDetailsState extends State<hotelDetails> {
                       ),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: RaisedButton(
-                              color: Colors.blue.shade300,
-                              child: Text(
-                                'Back',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              onPressed: (){
-                                Navigator.pushNamed(context, '/screen');
-                              }
-                          ),
-                        ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: RaisedButton(
@@ -183,6 +181,23 @@ class _hotelDetailsState extends State<hotelDetails> {
           ),
         ));
   }
+
+  void onSelected(BuildContext context, int item) {
+    switch (item) {
+      case 0:
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => cancellation()),
+          //Navigator.pushNamed(context, '/screen');
+        );
+        break;
+      case 1:
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => home()),
+              (route) => false,
+        );
+    }
+  }
+
 }
 
 class MyBullet extends StatelessWidget {

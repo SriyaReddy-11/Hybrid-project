@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hotelreservation/Login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -11,8 +13,57 @@ class resetPassword extends StatefulWidget {
 }
 
 class _resetPasswordState extends State<resetPassword> {
+
+  final _auth = FirebaseAuth.instance;
+
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final TextEditingController emailController = new TextEditingController();
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
+    final emailField = TextFormField(
+      decoration: InputDecoration(
+          border:
+          OutlineInputBorder(borderSide: new BorderSide(color: Colors.red)),
+          labelText: 'Enter Email',
+          hintText: 'Enter Your E-mail'),
+      autofocus: false,
+      controller: emailController,
+      keyboardType: TextInputType.emailAddress,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "Please enter your Email Address";
+        }
+        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+          return ("Please enter a valid Email Address");
+        }
+      },
+      onSaved: (value) {
+        emailController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+    );
+
+    final resetField = Material(
+      child: MaterialButton(
+        onPressed: () {
+          if(_formKey.currentState!.validate()) {
+            reset(emailController.text);
+          }
+        },
+        color: Colors.blue,
+        child: Text(
+          'Reset',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
+      ),
+    );
+
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
@@ -52,80 +103,58 @@ class _resetPasswordState extends State<resetPassword> {
                     fit: BoxFit.cover),
               ),
               child: SingleChildScrollView(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 25, bottom: 48,left: 35),
-                        child: Text(
-                          ('Fill the details to reset your password'),
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            fontStyle: FontStyle.italic,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 260,
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 5.0),
-                          child: TextField(
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderSide:
-                                    new BorderSide(color: Colors.red)),
-                                labelText: 'Enter E-mail',
-                                hintText: 'Enter Your E-mail'),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 260,
-                        child: TextField(
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderSide: new BorderSide(color: Colors.red)),
-                              labelText: 'New Password',
-                              hintText: 'Enter Your new password'),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
-                        child: Container(
-                          width: 260,
-                          child: TextField(
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderSide: new BorderSide(color: Colors.red)),
-                                labelText: 'Re-enter Password',
-                                hintText: 'Confirm password'),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0,right: 8.0,top: 8.0),
-                        child: RaisedButton(
-                          color: Colors.blue.shade300,
-                          child: Text('Reset Password',
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 25, bottom: 48,left: 35),
+                          child: Text(
+                            ('Fill the details to reset your password'),
                             style: TextStyle(
+                              fontSize: 25,
                               fontWeight: FontWeight.bold,
-                              fontSize: 18,
+                              fontStyle: FontStyle.italic,
                             ),
                           ),
-                          onPressed: (){
-                            //navigateToNextScreen(context);
-                            Navigator.pushNamed(context, '/login');
-                          },
                         ),
-                      ),
-                    ]
+                        Container(
+                          width: 260,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 5.0),
+                            child: emailField
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0,right: 8.0,top: 8.0),
+                          child: resetField
+                        ),
+                      ]
+                  ),
                 ),
               ),
             )
         )
     );
   }
+  Future<void> reset(String email) async {
+
+    await _auth
+        .sendPasswordResetEmail(email: email)
+        .then((uid) => {
+      Fluttertoast.showToast(msg: "Check your E-mail for reset"),
+      // Navigator.push(context,
+      //   MaterialPageRoute(builder: (context) => Login()),
+      //),
+    })
+        .catchError((e) {
+
+      Fluttertoast.showToast(msg: e!.message);
+    });
+
+  }
+
 // void navigateToNextScreen(BuildContext context) {
 //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
 // }
