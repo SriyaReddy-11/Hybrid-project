@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelreservation/Home.dart';
+import 'package:hotelreservation/aminities/hotel_list.dart';
 import 'package:hotelreservation/cancellation.dart';
 import 'package:hotelreservation/hotelDetails.dart';
 import 'package:hotelreservation/hotelScreen.dart';
@@ -25,22 +26,49 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/home',
-      routes: {
-        '/home' :(context) => home(),
-        '/login' : (context) => Login(),
-        '/reset' : (context) => resetPassword(),
-        '/cancel' : (context) => cancellation(),
-        '/confirm' : (context) => bookingConfirmation(),
-        //'/splash' : (context) => Splash(),
-        '/details' : (context) => hotelDetails(),
-        '/screen' : (context) => hotelScreen(),
-        '/account' : (context) => CreateAccount(),
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/home',
+        routes: {
+          '/home': (context) => home(),
+          '/login': (context) => Login(),
+          '/reset': (context) => resetPassword(),
+          '/cancel': (context) => cancellation(),
+          '/confirm': (context) => bookingConfirmation(),
+          //'/splash' : (context) => Splash(),
+          '/screen': (context) => hotelScreen(),
+          '/account': (context) => CreateAccount(),
 
-      },
+        },
+
+        onGenerateRoute: (settings) {
+          // If you push the PassArguments route
+          if (settings.name == '/details') {
+            // Cast the arguments to the correct
+            // type: ScreenArguments.
+            final arg = settings.arguments as HotelList;
+
+            // Then, extract the required data from
+            // the arguments and pass the data to the
+            // correct screen.
+            return MaterialPageRoute(
+              builder: (context) {
+                return hotelDetails(
+                  docId: arg.docId ?? '',
+                  name: arg.name ?? '',
+                  //status: arg.status ?? ',
+                  image: arg.image ?? '',
+                  price: arg.price ?? '',
+                  a1: arg.a1 ?? '',
+                  a2: arg.a2 ?? '',
+                  a3: arg.a3 ?? '',
+                  a4: arg.a4 ?? '',
+                );
+              },
+            );
+          }
+        }
     );
   }
+
 }

@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+// import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hotelreservation/hotelScreen.dart';
 
@@ -243,9 +243,9 @@ class _LoginState extends State<Login> {
   }
 
   void facebookLogin() async{
-    final FacebookLogin fbLogin = FacebookLogin();
-    final result = await fbLogin.logInWithReadPermissions(['email']);
-    final String status = result.status as String;
-    Fluttertoast.showToast(msg: status);
+    // final FacebookLogin fbLogin = FacebookLogin();
+    // final result = await fbLogin.logInWithReadPermissions(['email']);
+    // final String status = result.status as String;
+    // Fluttertoast.showToast(msg: status);
   }
  }
