@@ -23,6 +23,8 @@ class _CreateAccountState extends State<CreateAccount> {
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  // We will use this to define detail about each field including decoration
+  // We will use only these names in the design
   final TextEditingController nameController = new TextEditingController();
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
@@ -122,6 +124,7 @@ class _CreateAccountState extends State<CreateAccount> {
         if (value!.isEmpty) {
           return "Please re-enter your Password";
         }
+        //checking if both passwords are same or not
         if(passwordController.text != value){
           return "Confirm password does not match with password";
         }
@@ -246,6 +249,8 @@ class _CreateAccountState extends State<CreateAccount> {
     );
   }
 
+
+  // Sign-in check and message
   Future<void> create(String email, String password) async {
 
       await _auth
