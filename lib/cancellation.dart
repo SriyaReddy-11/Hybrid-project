@@ -90,11 +90,13 @@ class _cancellationState extends State<cancellation> {
         final prevBookings = snapshot['bookings'] ?? [];
         prevBookings.forEach((bId) {
           if (docID != bId) {
+            //adding each booked hotel to the list using booking id
             bookings.add(bId);
           }
         });
       }
 
+      //wait untill fetched bookings and merge with the existing ones
       await userRef.set({'bookings': bookings}, SetOptions(merge: true));
       _getBookedHotels();
     } on FirebaseAuthException catch (e) {
@@ -160,6 +162,7 @@ class _cancellationState extends State<cancellation> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                //Iterating through the booked hotels list
                 aminities.isNotEmpty
                     ? ListView.builder(
                         itemCount: aminities.length,
@@ -248,6 +251,8 @@ class _cancellationState extends State<cancellation> {
                                 // ),
                               ]);
                         })
+
+                //Showing alternative when no hotels have been booked or all have been cancelled
                     : const Center(
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
