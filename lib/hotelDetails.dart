@@ -40,11 +40,13 @@ class _hotelDetailsState extends State<hotelDetails> {
     super.initState();
   }
 
+  //checking booking status
   _checkIfBooked() async {
     final userID = FirebaseAuth.instance.currentUser?.uid;
     final userRef = FirebaseFirestore.instance.collection('users').doc(userID);
     final snapshot = await userRef.get();
 
+    // getting the data from firebase using snapshot
     if (snapshot.exists && snapshot.data()!.containsKey('bookings')) {
       final List<dynamic> prevBookings = snapshot['bookings'] ?? [];
       if (prevBookings.contains(widget.docId)) {
@@ -89,7 +91,7 @@ class _hotelDetailsState extends State<hotelDetails> {
         ),
         actions: [
           PopupMenuButton<int>(
-            color: Colors.indigo,
+            color: Colors.indigo.shade200,
             onSelected: (item) => onSelected(context, item),
             itemBuilder: (context) => [
               PopupMenuItem<int>(
@@ -131,6 +133,7 @@ class _hotelDetailsState extends State<hotelDetails> {
                     width: 370,
                     height: 240,
                     child: Image.network(
+                      //will use widget.parameters to extract data and use them
                       widget.image,
                       fit: BoxFit.cover,
                     ),
@@ -157,6 +160,7 @@ class _hotelDetailsState extends State<hotelDetails> {
                   ),
                 ),
                 ListTile(
+                  // Method described later to show bullet points
                   leading: MyBullet(),
                   title: Text(
                     widget.a2,
@@ -259,6 +263,7 @@ class _hotelDetailsState extends State<hotelDetails> {
   }
 }
 
+//Bullet point decoration and lining using method
 class MyBullet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -272,3 +277,5 @@ class MyBullet extends StatelessWidget {
     );
   }
 }
+  
+  
