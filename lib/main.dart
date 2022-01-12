@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
+        // Providing keys for page routing and showing initial path
         initialRoute: '/home',
         routes: {
           '/home': (context) => home(),
@@ -41,13 +42,13 @@ class MyApp extends StatelessWidget {
 
         },
 
+        //generating arguments to use in Hotel Details page to show amenities of hotel
         onGenerateRoute: (settings) {
           // If you push the PassArguments route
           if (settings.name == '/details') {
             // Cast the arguments to the correct
             // type: ScreenArguments.
             final arg = settings.arguments as HotelList;
-
             // Then, extract the required data from
             // the arguments and pass the data to the
             // correct screen.
