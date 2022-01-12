@@ -138,9 +138,12 @@ class _resetPasswordState extends State<resetPassword> {
         )
     );
   }
+
+  // We will only use the user email to verify and send rest link
   Future<void> reset(String email) async {
 
     await _auth
+    // we will directly send mail to their mail to reset
         .sendPasswordResetEmail(email: email)
         .then((uid) => {
       Fluttertoast.showToast(msg: "Check your E-mail for reset"),
